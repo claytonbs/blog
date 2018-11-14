@@ -1,0 +1,51 @@
+{% include "./partials/header.njk" %}
+
+
+
+<div class="grid-container">
+    <div class="grid-x grid-padding-x">
+
+
+  
+    <div class="cell">
+      <div class="card">
+        <img class = "showImg" src = "{{post.imagem}}">
+        <div class="card-section">
+        <h4>{{ post.title }}</h4>
+          <p>{{ post.content|safe }}</p>
+          <p> {{ post.author }}  </p>
+          
+            <a class = "button primary" href = "/comment/{{post._id}}">Add comment</a>
+            <a class = "button primary" href = "/edit/{{post._id}}">Edit post</a>
+            
+            {% if (currentUser.username === "admin") %}
+              
+              
+              <form id = "deleteForm" action = "/delete/{{post._id}}/?_method=DELETE" method = "POST">
+                <button class = "button alert">Delete post</button>
+              </form>
+            {% endif %}
+            
+            <a></a>
+            
+        </div>
+      </div>
+    
+      {% if (post.comments.length > 0)  %}
+    <h3>Comments</h3>
+      {% for comment in post.comments %}
+    <hr>
+    <p class = "commentLine">  <strong>{{comment.author}}</strong> - {{comment.text}} </p>
+    
+    {% endfor  %}
+    
+    {% endif %}
+    
+    </div>
+    
+    
+    
+    </div>
+</div>
+
+{% include "./partials/footer.njk" %}

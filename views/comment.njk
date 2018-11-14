@@ -1,0 +1,38 @@
+{% include "./partials/header.njk" %}
+
+
+<div class="grid-container">
+<h2>Add comment to {{post.title}}</h2>
+
+
+<form action = "/comment/{{post._id}}" method = "POST">
+ 
+    {% if (currentUser.username.length > 0) %}
+    
+    
+    
+     <input type="hidden"  name="author" value="{{currentUser.username}}">
+    
+ 
+
+
+    {% else %}
+    
+        <input type = "text" name = "author" placeholder = "Author" required><br>
+    
+    
+    
+    {% endif %}
+
+    <textarea name = "text" rows = "8" placeholder = "Your comment here"  required></textarea>
+
+<button class = "primary button">Add comment</button>
+</form>
+
+
+</div>
+
+{% include "./partials/footer.njk" %}
+
+
+

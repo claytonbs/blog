@@ -1,0 +1,44 @@
+.postItem:hover {
+    opacity: 0.5;
+    
+}
+
+
+img {
+    height: auto;
+    object-fit: cover;
+}
+
+
+#more { color: #0000EE;
+    
+}
+
+
+.indexImg {
+    max-height: 300px;
+    
+}
+
+
+.showImg {
+    max-height: 600px;
+    
+    
+}
+
+.commentLine {
+    word-break: break-all;
+}
+
+
+#deleteForm {
+    display: inline;
+    
+}
+
+/*.fas .far {*/
+/*    margin-top: -3px;*/
+    
+/*}*/
+

@@ -1,0 +1,23 @@
+{% include "./partials/header.njk" %}
+
+
+<div class="grid-container">
+<h2>Edit post</h2>
+
+
+<form action = "/edit/{{post._id}}/?_method=PUT" method = "POST">
+    <input type = "text" name = "title" value = "{{post.title}}" required><br>
+    <input type = "text" name = "image" value = "{{post.imagem}}" required><br>
+    
+    <textarea name = "content" rows = "8"  required>{{post.content}}</textarea>
+
+<button class = "primary button">Submit changes</button>
+</form>
+
+
+</div>
+
+{% include "./partials/footer.njk" %}
+
+
+

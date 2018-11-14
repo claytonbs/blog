@@ -1,0 +1,36 @@
+{% include "./partials/header.njk" %}
+
+
+<div class="grid-container">
+<h2>List of posts</h2>
+
+    <div class="grid-x grid-padding-x">
+{% for post in posts  %}
+
+
+  
+    <a href = "/posts/{{post._id}}" class="large-4 medium-6 cell postItem">
+      <div class="card">
+        <img class = "indexImg" src = "{{post.imagem}}">
+        <div class="card-section">
+        <h4>{{ post.title }}</h4>
+          <p>{{ post.content.substring(0,100)|safe }} <span id = "more" >...</span> </p>
+          <p> {{ post.author }}  </p>
+        </div>
+      </div>
+    </a>
+    
+
+
+{% endfor  %}
+
+    </div>
+</div>
+
+
+{% include "./partials/footer.njk" %}
+
+
+
+
+    

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="no-js" dir="ltr">
+ 
+  
+<meta charset="utf-8">
+ 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+ <link rel="stylesheet" type="text/css" href="/stylesheets/foundation/css/foundation.css">
+  
+<link rel="stylesheet" type="text/css" href="/stylesheets/foundation/css/app.css">
+ 
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<html>
+<header>
+<title>Blog</title>
+</header>
+<body>
+
+
+
+
+<ul class="vertical align-center medium-horizontal menu  icons icon-left">
+  <li {{ " class=active  " if (menuActive === "home")}} ><a href="/"><i class="fas fa-home"></i> <span>Home</span></a></li>
+  <li {{ " class=active  " if (menuActive === "new")}} ><a href="/new"><i class="far fa-file-alt"></i> <span>New post</span></a></li>
+  
+  {% if currentUser %}
+   <li><a href = "/"><i class="fas fa-user"></i> <span>You are logged as {{currentUser.username}}</span></a></li>
+  <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+    
+{% else %}
+
+
+<li {{ " class=active  " if (menuActive === "login")}} ><a href="/login"><i class="fas fa-sign-in-alt"></i> <span>Login</span></a></li>
+
+
+
+    <li {{ " class=active  " if (menuActive === "register")}} ><a href="/register"><i class="fas fa-user-plus"></i> <span> Register</span></a></li>
+    
+{% endif %}
+
+
+</ul>
+
+<div class="grid-container">
+
+{% if (error) and (error.length > 0) %}
+<div class="callout alert" data-closable>
+  <h5>Warning</h5>
+  <p>{{error}}</p>
+  
+  <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endif %}
+
+
+{% if (success) and (success.length > 0) %}
+<div class="callout success" data-closable>
+  <h5>Success</h5>
+  <p>{{success}}</p>
+  
+  <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endif %}
+
+
+</div>
