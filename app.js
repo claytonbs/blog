@@ -68,7 +68,9 @@ nunjucks.configure('views', {
 // CONFIGURA BANCO DE DADOS     
 
 
-mongoose.connect("mongodb://localhost/blog", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/blog", { useNewUrlParser: true });
+
+mongoose.connect("mongodb://claytonbs:blog123@ds161653.mlab.com:61653/blog", { useNewUrlParser: true });
 
 var blogSchema = new mongoose.Schema({
     title: String,
@@ -90,7 +92,29 @@ var Posts = mongoose.model("posts", blogSchema);
 
 
 
-var x = "ola3"
+// INDEX ROUTE
+
+app.get('/', (req,res) =>{
+   Posts.find({}, function(err,posts){
+           if (err) {
+               console.log(err);
+           } else {
+                res.render("index", {posts: posts, menuActive: "home"});    
+           }
+       
+        }); 
+});
+
+
+
+// NEW POST ROUTES
+app.get('/new', isLoggedIn, (req,res) => {
+    
+   res.render('newpost', {menuActive: 'new'}); 
+    
+});
+
+
 
 app.post('/new', isLoggedIn, (req,res) => {
     console.log(req.body.title);
@@ -127,25 +151,9 @@ app.post('/new', isLoggedIn, (req,res) => {
 });
 
 
-app.get('/new', isLoggedIn, (req,res) => {
-    
-   res.render('newpost', {menuActive: 'new'}); 
-    
-});
 
 
-app.get('/', (req,res) =>{
-   Posts.find({}, function(err,posts){
-           if (err) {
-               console.log(err);
-           } else {
-                res.render("index", {posts: posts, menuActive: "home"});    
-           }
-       
-        }); 
-});
-
-
+// SHOW POST ROUTE
 
 app.get("/posts/:id", (req,res) => {
         
@@ -160,6 +168,9 @@ app.get("/posts/:id", (req,res) => {
     
 });
 
+
+// EDIT POST ROUTES
+
 app.get('/edit/:id', isLoggedIn, (req,res) => {
    Posts.findById(req.params.id, (err, post) => {
         if (err){
@@ -170,7 +181,6 @@ app.get('/edit/:id', isLoggedIn, (req,res) => {
     });  
     
 });
-
 
 
 
