@@ -1,1 +1,1 @@
-A complete Express Restfull App with MongoDB and CRUD
+A complete Express Restful blog App with MongoDB and CRUD
